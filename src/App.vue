@@ -21,9 +21,9 @@ export default {
 
   methods: {
     getProjects() {
-      axios.get('http://127.0.0.1:8000/api/projects').then(res => {
+      axios.get('http://127.0.0.1:8000/api/projects?page=' + '1').then(res => {
         // console.log(res.data.results);
-        this.projects = res.data.results;
+        this.projects = res.data.results.data;
         // console.log(this.projects);
       })
     }
