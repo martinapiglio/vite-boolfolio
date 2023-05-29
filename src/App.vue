@@ -1,71 +1,43 @@
 <script>
-import {store} from './store.js';
-import axios from 'axios';
-import ProjectCard from './components/ProjectCard.vue';
+import AppHeader from './components/AppHeader.vue';
+import AppAside from './components/AppAside.vue';
+import AppMain from './components/AppMain.vue';
 
 export default {
-  name: 'App',
-
-  data() {
-    return {
-      store,
-      currentPage: 1,
-      lastPage: '',
+  data(){
+    return{
     }
-  },
-
+  }, 
   components: {
-    ProjectCard,
-  },
-
-  created() {
-    this.getProjects();
-  },
-
-  methods: {
-    getProjects() {
-      axios.get(this.store.baseURL + this.store.APIroute + '?page=' + this.currentPage).then(res => {
-        this.store.projects = res.data.results.data;
-        this.lastPage = res.data.results.last_page;
-      })
-    },
-
-    nextPage(){
-      if(this.currentPage == this.lastPage) {
-        this.currentPage = 1;
-      } else {
-        this.currentPage++;
-      }
-      this.getProjects();
-    }, 
-
-    prevPage(){
-      if(this.currentPage == 1) {
-        this.currentPage = this.lastPage;
-      } else {
-        this.currentPage--;
-      }
-      this.getProjects();
-    }
-  }
-
+    AppHeader,
+    AppAside,
+    AppMain,
 }
-
+}
 </script>
 
 <template>
-  <h1>Projects</h1>
-
-  <div>Page: {{ this.currentPage }} of {{ this.lastPage }}</div>
-  <button @click="prevPage()">Previous Page</button>
-  <button @click="nextPage()">Next Page</button>
-
-  <div v-for="project in store.projects">
-    <ProjectCard :project="project"></ProjectCard>
+  <div id="outer-container">
+    <AppAside></AppAside>
+    <div id="main-container">
+      <AppHeader></AppHeader>
+      <AppMain></AppMain>
+    </div>
   </div>
-
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+@use './components/style/_variables.scss' as *;
+
+#outer-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+
+    #main-container {
+      width: calc(100vw - $aside-width);
+      height: 100vh;
+    }
+}
 
 </style>
