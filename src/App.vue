@@ -1,4 +1,5 @@
 <script>
+import {store} from './store.js';
 import axios from 'axios';
 import ProjectCard from './components/ProjectCard.vue';
 
@@ -7,7 +8,9 @@ export default {
 
   data() {
     return {
-      projects: [],
+      store,
+      currentPage: 1,
+      lastPage: '',
     }
   },
 
@@ -21,11 +24,28 @@ export default {
 
   methods: {
     getProjects() {
-      axios.get('http://127.0.0.1:8000/api/projects?page=' + '1').then(res => {
-        // console.log(res.data.results);
-        this.projects = res.data.results.data;
-        // console.log(this.projects);
+      axios.get(this.store.baseURL + this.store.APIroute + '?page=' + this.currentPage).then(res => {
+        this.store.projects = res.data.results.data;
+        this.lastPage = res.data.results.last_page;
       })
+    },
+
+    nextPage(){
+      if(this.currentPage == this.lastPage) {
+        this.currentPage = 1;
+      } else {
+        this.currentPage++;
+      }
+      this.getProjects();
+    }, 
+
+    prevPage(){
+      if(this.currentPage == 1) {
+        this.currentPage = this.lastPage;
+      } else {
+        this.currentPage--;
+      }
+      this.getProjects();
     }
   }
 
@@ -35,9 +55,15 @@ export default {
 
 <template>
   <h1>Projects</h1>
-  <div v-for="project in projects">
+
+  <div>Page: {{ this.currentPage }} of {{ this.lastPage }}</div>
+  <button @click="prevPage()">Previous Page</button>
+  <button @click="nextPage()">Next Page</button>
+
+  <div v-for="project in store.projects">
     <ProjectCard :project="project"></ProjectCard>
   </div>
+
 </template>
 
 <style scoped>
