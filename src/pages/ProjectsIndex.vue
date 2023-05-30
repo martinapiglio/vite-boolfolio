@@ -55,7 +55,7 @@ export default {
 
 <template>
 
-    <main>
+    <main id="projects-container">
 
         <h1>My projects</h1>
 
@@ -77,10 +77,9 @@ export default {
 @use '../components/style/_variables.scss' as *;
 @use '../components/style/_mixins.scss' as *;
 
-    main {
+    #projects-container {
+        padding: 7rem 5rem 5rem;
         width: 100%;
-        height: calc(100vh - $header-height);
-        padding: 3rem 4rem;
         overflow-y: auto;
 
         h1 {

@@ -1,7 +1,6 @@
 <script>
 import AppHeader from './components/AppHeader.vue';
-import AppAside from './components/AppAside.vue';
-import AppMain from './components/AppMain.vue';
+import AppFooter from './components/AppFooter.vue';
 
 export default {
   data(){
@@ -10,41 +9,28 @@ export default {
   }, 
   components: {
     AppHeader,
-    AppAside,
-    AppMain,
-}
+    AppFooter
+  }
 }
 </script>
 
 <template>
 
-  <div id="outer-container">
+  <div id="main-container">
 
-    <AppAside></AppAside>
-
-    <div id="main-container">
-
-      <AppHeader></AppHeader>
-      <router-view></router-view>
-
-    </div>
+    <AppHeader></AppHeader>
+    <router-view></router-view>
+    <AppFooter></AppFooter>
 
   </div>
 
 </template>
 
 <style lang="scss" scoped>
-@use './components/style/_variables.scss' as *;
 
-#outer-container {
-    display: flex;
+  #main-container {
     width: 100vw;
     height: 100vh;
-
-    #main-container {
-      width: calc(100vw - $aside-width);
-      height: 100vh;
-    }
-}
+  }
 
 </style>
