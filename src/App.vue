@@ -17,13 +17,20 @@ export default {
 </script>
 
 <template>
+
   <div id="outer-container">
+
     <AppAside></AppAside>
+
     <div id="main-container">
+
       <AppHeader></AppHeader>
-      <AppMain></AppMain>
+      <router-view></router-view>
+
     </div>
+
   </div>
+
 </template>
 
 <style lang="scss" scoped>
