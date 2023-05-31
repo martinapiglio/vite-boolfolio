@@ -36,6 +36,9 @@ export default {
         <div class="card-text">{{ project.description }}</div>
         <div class="card-text">Type: {{ project.type ? project.type.title : 'nessuno' }}</div>
         <span v-for="technology in project.technologies" :style="{backgroundColor : technology.color}" class="badge rounded-pill mx-1"> {{ technology.name }}</span>
+        <button>
+          <router-link :to="{name: 'projects-show', params: {slug: project.slug}}">details</router-link>
+        </button>
     </div>
 
   </div>
