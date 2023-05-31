@@ -32,7 +32,7 @@ export default {
 
 <template>
 
-    <section id="single-project-container">
+    <section id="single-project-container" :class="store.isActive == true ? 'dark-mode' : ''">
         
             <h3>{{ project.title }}</h3>
             <h4>

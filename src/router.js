@@ -18,20 +18,34 @@ const router = createRouter({
         {
             path: '/about',
             name: 'about',
-            component: AppAbout
+            component: AppAbout,
+            meta: {
+                title: 'MP Portfolio - About me'
+            }
         },
         {
             path: '/projects',
             name: 'projects-index',
-            component: ProjectsIndex
+            component: ProjectsIndex,
+            meta: {
+                title: 'MP Portfolio - Projects'
+            }
         },
         {
             path: '/projects/:slug',
             name: 'projects-show',
-            component: SingleProject
+            component: SingleProject,
+            meta: {
+                title: 'MP Portfolio - Project detail'
+            }
         },
     ]
 
+});
+
+//change page titles
+router.beforeEach((to) => {
+    document.title = to.meta?.title ?? 'Martina Piglionica - Portfolio'
 });
 
 export { router };

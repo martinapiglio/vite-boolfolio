@@ -55,7 +55,7 @@ export default {
 
 <template>
 
-    <main id="projects-container">
+    <main id="projects-container" :class="store.isActive == true ? 'dark-mode' : ''">
 
         <h1>My projects</h1>
 
