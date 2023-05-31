@@ -7,4 +7,6 @@ export const store = reactive({
 
   projects: '',
 
+  isActive: false,
+
 });

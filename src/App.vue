@@ -1,34 +1,41 @@
 <script>
+import {store} from './store.js';
 import AppHeader from './components/AppHeader.vue';
 import AppFooter from './components/AppFooter.vue';
 
 export default {
-  data(){
-    return{
-    }
-  }, 
-  components: {
-    AppHeader,
-    AppFooter
-  },
-  methods: {
-    addBgColor() {
-      let container = document.getElementById('main-container');
-      container.classList.add('black');
+    data(){
+        return{
+          store
+        }
+    }, 
+
+    components: {
+        AppHeader,
+        AppFooter
     },
-    removeBgColor() {
-      let container = document.getElementById('main-container');
-      container.classList.remove('black');
+
+    methods: {
+
+      bgColor() {
+        let container = document.getElementById('main-container');
+
+        if(this.store.isActive == true) {
+            container.classList.add('background-change');
+        } else {
+            container.classList.remove('background-change');
+        }
+      }
+
     }
-  }
 }
 </script>
 
 <template>
 
-  <div id="main-container">
+  <div id="main-container" class="background">
 
-    <AppHeader @changeColor="addBgColor()" @removeColor="removeBgColor()"></AppHeader>
+    <AppHeader @changeColor="bgColor()"></AppHeader>
     <router-view></router-view>
     <AppFooter></AppFooter>
 
@@ -37,15 +44,23 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@use './components/style/_variables.scss' as *;
 
-  #main-container {
+#main-container {
     width: 100vw;
     height: 100vh;
-    transition: background-color .7s;
-  }
+}
+.background {
+    background-image: linear-gradient(black, black );
+    background-size: 100% 0%;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    transition: background-size 1s ease-in-out;
+    color: black;
+}
 
-  .black {
-      background-color: black;
-    }
+.background-change {
+    background-size: 100% 100%;
+}
 
 </style>

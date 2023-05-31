@@ -105,19 +105,20 @@
         #title {
             opacity: 0;
             animation: fadein 2s forwards;
+            animation-delay: 1s;
         }
         
         .sub-title {
             opacity: 0;
             animation: fadein 2s forwards;
-            animation-delay: .7s;
+            animation-delay: 1.8s;
         }
         
         #description {
             padding: 2rem 0 0;
             opacity: 0;
             animation: fadein 2s forwards;
-            animation-delay: 1.4s;
+            animation-delay: 2.2s;
         }
         
         .desc-text {
@@ -131,7 +132,7 @@
         padding-left: 2rem; 
         opacity: 0;
         animation: fadein 2s forwards;
-        animation-delay: 1.4s;
+        animation-delay: 2.6s;
 
         h4 {
             color: $maya;

@@ -1,7 +1,10 @@
 <script>
+import {store} from '../store.js';
+
 export default {
     data() {
         return {
+            store,
             socials: [
                 {
                     name: 'Linkedin',
@@ -29,8 +32,8 @@ export default {
     <footer>
         <ul>
             <li v-for="social in socials">
-                <a :href="social.link">
-                    <i :class="social.icon"></i>
+                <a :href="social.link" :class="store.isActive == true ? 'dark-mode' : ''">
+                    <i :class="social.icon" class="icons"></i>
                 </a>
             </li>
         </ul>
@@ -54,12 +57,15 @@ footer {
         @include flex(row, wrap, flex-start, center, center);
         gap: 4rem;
 
-        li a i {
-            font-size: 1.2rem;
+        li a {
+            transition: all 1s;
+            
+            i {
+                font-size: 1.2rem;
+            }
         }
+        
     }
 }
-
-    
 
 </style>
