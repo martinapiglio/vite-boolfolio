@@ -12,15 +12,15 @@
                 icon: 'fa-css3'
             },
             {
-                name: 'Css',
+                name: 'Scss',
                 icon: 'fa-sass'
             },
             {
-                name: 'Javascript',
+                name: 'JavaScript',
                 icon: 'fa-square-js'
             },
             {
-                name: 'Vue',
+                name: 'Vue / Vite',
                 icon: 'fa-vuejs'
             },
             {
@@ -59,6 +59,7 @@
             <ul>
                 <li v-for="language in languages">
                     <i class="fa-brands" :class="language.icon"></i>
+                    <div class="label"> {{ language.name }} </div>
                 </li>
             </ul>
 
@@ -93,10 +94,15 @@
     }
 }
 
+@keyframes bounce {
+        0%, 100% {transform: translateY(0);}
+        50% {transform: translateY(-.7rem);}
+}
+
 #about-me {
     color: rgb(190, 190, 190);
     height: 100%;
-    padding: 7rem 5rem 3rem;
+    padding: 0 5rem;
     @include flex(row, nowrap, space-between, center, center);
 
     #about-me-left {
@@ -143,8 +149,56 @@
             @include flex(row, wrap, flex-start, center, center);
             gap: 2rem;
             padding: 0;
-            li i {
-                font-size: 3rem;
+
+            li {
+                position: relative;
+
+                i {
+                    font-size: 3rem;
+                    transition: all .2s;
+    
+                    &:hover {
+                        cursor: pointer;
+                        color: $maya;
+                    }
+                }
+
+                .label {
+                    position: absolute;
+                    bottom: -1.8rem;
+                    left: 0;
+                    right: 0;
+                    margin: 0 auto;
+                    width: fit-content;
+                    white-space: nowrap;
+                    padding: 0 .4rem;
+                    font-size: 1rem;
+                    border-radius: 5px;
+                    color: white;
+                    background-color: $penn;
+                    visibility: hidden;
+                    opacity: 0;
+                    transition: all .3s ease-out;
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        left: 15%;
+                        bottom: 100%;
+                        width: 0;
+                        height: 0;
+                        border-left: 5px solid transparent;
+                        border-right: 5px solid transparent;
+                        border-bottom: 7px solid $penn;
+                    }
+                }
+
+            }
+            li:hover .label {
+                visibility: visible;
+                opacity: 1;
+                transition: all .3s ease-in;
+                animation: bounce .3s ease;
             }
         }
 
