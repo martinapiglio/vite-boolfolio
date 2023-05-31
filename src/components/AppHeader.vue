@@ -6,9 +6,9 @@
 
     <header>
         <nav>
-            <router-link :to="{name: 'projects-index'}" class="nav-links">projects</router-link>            
-            <router-link :to="{name: 'home'}" class="nav-links" id="name">MARTINA PIGLIONICA</router-link> 
-            <router-link :to="{name: 'about'}" class="nav-links">about</router-link>
+            <router-link :to="{name: 'projects-index'}" class="nav-links" @click="$emit('changeColor')">projects</router-link>            
+            <router-link :to="{name: 'home'}" class="nav-links" id="name" @click="$emit('removeColor')">MARTINA PIGLIONICA</router-link> 
+            <router-link :to="{name: 'about'}" class="nav-links" @click="$emit('changeColor')">about</router-link>
         </nav>
     </header>
 
@@ -47,6 +47,11 @@
                     --p: 100%;
                     background-position: left;
                 }
+            }
+
+            .router-link-active:not(#name) {
+                background-color: $maya;
+                color: white;
             }
         }
 

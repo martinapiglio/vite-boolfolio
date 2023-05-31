@@ -152,11 +152,6 @@
         }
     }
 
-    background-color:rgba(0,0,0);
-  -webkit-transition: background-color .3s linear;
-    -ms-transition: background-color .3s linear;
-    transition: background-color .3s linear;
-  will-change: background-color;
 }
 
 

@@ -10,6 +10,16 @@ export default {
   components: {
     AppHeader,
     AppFooter
+  },
+  methods: {
+    addBgColor() {
+      let container = document.getElementById('main-container');
+      container.classList.add('black');
+    },
+    removeBgColor() {
+      let container = document.getElementById('main-container');
+      container.classList.remove('black');
+    }
   }
 }
 </script>
@@ -18,7 +28,7 @@ export default {
 
   <div id="main-container">
 
-    <AppHeader></AppHeader>
+    <AppHeader @changeColor="addBgColor()" @removeColor="removeBgColor()"></AppHeader>
     <router-view></router-view>
     <AppFooter></AppFooter>
 
@@ -31,6 +41,11 @@ export default {
   #main-container {
     width: 100vw;
     height: 100vh;
+    transition: background-color .7s;
   }
+
+  .black {
+      background-color: black;
+    }
 
 </style>
