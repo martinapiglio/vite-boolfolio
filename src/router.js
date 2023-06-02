@@ -20,7 +20,7 @@ const router = createRouter({
             name: 'about',
             component: AppAbout,
             meta: {
-                title: 'MP Portfolio - About me'
+                title: 'About me'
             }
         },
         {
@@ -28,7 +28,7 @@ const router = createRouter({
             name: 'projects-index',
             component: ProjectsIndex,
             meta: {
-                title: 'MP Portfolio - Projects'
+                title: 'Projects'
             }
         },
         {
@@ -36,7 +36,7 @@ const router = createRouter({
             name: 'projects-show',
             component: SingleProject,
             meta: {
-                title: 'MP Portfolio - Project detail'
+                title: 'Project detail'
             }
         },
     ]
@@ -45,7 +45,7 @@ const router = createRouter({
 
 //change page titles
 router.beforeEach((to) => {
-    document.title = to.meta?.title ?? 'Martina Piglionica - Portfolio'
+    document.title = to.meta?.title ? 'MP Portfolio - ' + to.meta.title : 'Martina Piglionica - Portfolio'
 });
 
 export { router };

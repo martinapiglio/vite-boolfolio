@@ -15,11 +15,14 @@ export default {
   },
 
   computed: {
-
-      thumbnail(){
-        return this.store.baseURL + 'storage/' + this.project.thumbnail;
+    thumbnail() {
+        if(this.project.thumbnail) {
+          return this.store.baseURL + 'storage/' + this.project.thumbnail;
+        } else {
+          return 'https://www.schiffner.com/wp-content/themes/schiff-responsive/images/noimage.jpg';
+        }
       }
-    }, 
+  }
 
 }
 

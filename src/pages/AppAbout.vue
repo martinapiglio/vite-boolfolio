@@ -1,39 +1,40 @@
 <script>
     export default {
-  data(){
-    return{
-        languages: [
-            {
-                name: 'Html',
-                icon: 'fa-html5'
-            },
-            {
-                name: 'Css',
-                icon: 'fa-css3'
-            },
-            {
-                name: 'Scss',
-                icon: 'fa-sass'
-            },
-            {
-                name: 'JavaScript',
-                icon: 'fa-square-js'
-            },
-            {
-                name: 'Vue / Vite',
-                icon: 'fa-vuejs'
-            },
-            {
-                name: 'Php',
-                icon: 'fa-php'
-            },
-            {
-                name: 'Laravel',
-                icon: 'fa-laravel'
-            }            
-        ]
-    }
-  }, 
+    data(){
+        return{
+            languages: [
+                {
+                    name: 'Html',
+                    icon: 'fa-html5'
+                },
+                {
+                    name: 'Css',
+                    icon: 'fa-css3'
+                },
+                {
+                    name: 'Scss',
+                    icon: 'fa-sass'
+                },
+                {
+                    name: 'JavaScript',
+                    icon: 'fa-square-js'
+                },
+                {
+                    name: 'Vue / Vite',
+                    icon: 'fa-vuejs'
+                },
+                {
+                    name: 'Php',
+                    icon: 'fa-php'
+                },
+                {
+                    name: 'Laravel',
+                    icon: 'fa-laravel'
+                }            
+            ]
+        }
+    }, 
+
 }
 </script>
 
@@ -44,11 +45,17 @@
 
             <h1 id="title">Hello!</h1>
             <h2 class="sub-title">Name's Martina.</h2>
-            <h5 class="sub-title">Pronouns php/ccs.</h5>
+            <h5 class="sub-title">Pronouns php/css. &#9996;</h5>
             <div id="description">
-                <div class="desc-text">Not a big talker, but fluent in Italian, English and Javascript.</div>
-                <div class="desc-text">I don't have much space, so as the french say, let's go très vite.</div>
-                <div class="desc-text">I like coding. &#10024;</div>
+                <div class="desc-text" id="desc-1">
+                    I'm based in Milan, Italy, and I'm 30 years old. <br>
+                    I studied economics and finance and worked as a financial advisor for several years, but I've always had a soft spot for technology that I set aside for a long time...</div>
+                <div class="desc-text" id="desc-2">Almost a year ago, I decided to give my life a turning point and start devoting myself to what I always wanted to do in life: coding! &#10024;</div>
+                <div class="desc-text" id="desc-3">
+                    What fascinates me the most about coding is being able to create something from scratch, starting from a simple blank screen, and seeing how, little by little and piece by piece, everything builds up and comes together like a puzzle!<br>
+                    The best thing for me is feeling that I really created something concrete, stable, working, safe... and of course nice! <br>
+                    I try to learn something new every day and to challenge myself by learning and trying to push my limits by doing better and better, and I hope to convey my passion to others through my works!
+                </div>
             </div>
             
         </section>
@@ -64,7 +71,7 @@
             </ul>
 
             <div id="cv">
-                Download my CV here!
+                <a href="">Download my CV here!</a>
             </div>
 
         </section>
@@ -102,7 +109,7 @@
 #about-me {
     color: rgb(190, 190, 190);
     height: 100%;
-    padding: 0 5rem;
+    padding: 7rem 5rem;
     @include flex(row, nowrap, space-between, center, center);
 
     #about-me-left {
@@ -117,19 +124,30 @@
         .sub-title {
             opacity: 0;
             animation: fadein 2s forwards;
-            animation-delay: 1.8s;
+            animation-delay: 2s;
         }
         
         #description {
             padding: 2rem 0 0;
-            opacity: 0;
-            animation: fadein 2s forwards;
-            animation-delay: 2.2s;
-        }
-        
-        .desc-text {
+
+            .desc-text {
             font-size: 1.7rem;
         }
+        }
+
+        #desc-1 {
+            opacity: 0;
+            animation: fadein 2s forwards;
+            animation-delay: 3.2s;
+        }
+
+        .desc-text:not(#desc-1) {
+            opacity: 0;
+            animation: fadein 2s forwards;
+            animation-delay: 4.8s;
+        }
+        
+
         
     }
 
@@ -138,7 +156,7 @@
         padding-left: 2rem; 
         opacity: 0;
         animation: fadein 2s forwards;
-        animation-delay: 2.6s;
+        animation-delay: 5s;
 
         h4 {
             color: $maya;

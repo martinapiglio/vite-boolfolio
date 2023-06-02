@@ -49,6 +49,7 @@ header {
     width: 100%;
     padding: 2.2rem;
     background-color: transparent;
+    z-index: 2;
     
     nav {
         @include flex(row, wrap, space-between, center, center);

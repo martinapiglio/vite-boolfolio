@@ -9,4 +9,6 @@ export const store = reactive({
 
   isActive: false,
 
+  mail: 'martina.piglio@gmail.com'
+
 });
