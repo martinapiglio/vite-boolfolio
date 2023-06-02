@@ -15,10 +15,10 @@ export default {
         AppFooter
     },
 
-    methods: {
+    // methods: {
 
-      bgColor() {
-        let container = document.getElementById('main-container');
+    //   bgColor() {
+    //     let container = document.getElementById('main-container');
 
         // if(this.store.isActive == true) {
         //     container.classList.add('background-change');
@@ -32,9 +32,9 @@ export default {
         //     container.classList.remove('background-change');
         // }
 
-      }
+      // }
 
-    }
+    // }
 }
 </script>
 

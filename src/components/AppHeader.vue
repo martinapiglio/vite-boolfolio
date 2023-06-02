@@ -25,7 +25,7 @@ export default {
 
     <header>
         <nav>
-            <router-link :to="{name: 'projects-index'}" class="nav-links" @click="isActive()" :class="this.$route.path.includes('/projects') || this.$route.path.includes('/about') ? 'dark-mode' : ''">
+            <router-link :to="{name: 'projects-index'}" class="nav-links" @click="isActive()" :class="this.$route.path.includes('/projects') || this.$route.path.includes('/about') ? 'dark-mode' : '', this.$route.path.includes('/projects') ? 'router-link-active' : ''">
                 projects
             </router-link>            
             <router-link :to="{name: 'home'}" class="nav-links" id="name" @click="isNotActive()">

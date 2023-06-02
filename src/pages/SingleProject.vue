@@ -70,7 +70,7 @@ export default {
         </div>
         <!-- otherwise if the project does not exist  -->
         <div v-else>
-          No projects found in this category.
+          This project does not exist, please try with another one.
         </div>
 
       </div>
