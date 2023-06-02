@@ -44,7 +44,7 @@ export default {
 
 <template>
       
-    <section id="single-project-container" :class="store.isActive == true ? 'dark-mode' : ''">
+    <section id="single-project-container" :class="this.$route.path.includes('/projects') || this.$route.path.includes('/about') ? 'dark-mode' : ''">
       <!-- if variable isLoading == true then show a loading spinner -->
       <div v-if="isLoading" class="text-center py-5">
 
@@ -54,7 +54,7 @@ export default {
       </div>
 
       <!-- otherwise, if variable isLoading == false, show the projects section -->
-      <div v-else>
+      <div v-else :class="this.$route.path.includes('/projects') || this.$route.path.includes('/about') ? 'dark-mode' : ''">
         <!-- if selected project is found -->
         <div v-if="apiSuccess">
 

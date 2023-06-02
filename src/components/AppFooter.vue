@@ -56,7 +56,7 @@ export default {
             <li v-for="social in socials">
                 <a 
                     :href="social.link" 
-                    :class="store.isActive == true ? 'dark-mode' : ''" 
+                    :class="this.$route.path.includes('/projects') || this.$route.path.includes('/about') ? 'dark-mode' : ''" 
                     :id="social.link == 'mailto:' + store.mail ? 'mail-to' : ''"
                     @click="social.link == 'mailto:' + store.mail ? copyEmailToClipBoard() : ''"
                     >

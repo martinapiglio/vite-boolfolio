@@ -25,13 +25,13 @@ export default {
 
     <header>
         <nav>
-            <router-link :to="{name: 'projects-index'}" class="nav-links" @click="isActive(), $emit('changeColor')" :class="store.isActive == true ? 'dark-mode' : ''">
+            <router-link :to="{name: 'projects-index'}" class="nav-links" @click="isActive()" :class="this.$route.path.includes('/projects') || this.$route.path.includes('/about') ? 'dark-mode' : ''">
                 projects
             </router-link>            
-            <router-link :to="{name: 'home'}" class="nav-links" id="name" @click="isNotActive(), $emit('changeColor')">
+            <router-link :to="{name: 'home'}" class="nav-links" id="name" @click="isNotActive()">
                 MARTINA PIGLIONICA
             </router-link> 
-            <router-link :to="{name: 'about'}" class="nav-links" @click="isActive(), $emit('changeColor')" :class="store.isActive == true ? 'dark-mode' : ''">
+            <router-link :to="{name: 'about'}" class="nav-links" @click="isActive()" :class="this.$route.path.includes('/projects') || this.$route.path.includes('/about') ? 'dark-mode' : ''">
                 about
             </router-link>
         </nav>

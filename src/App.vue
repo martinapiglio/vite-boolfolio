@@ -20,11 +20,18 @@ export default {
       bgColor() {
         let container = document.getElementById('main-container');
 
-        if(this.store.isActive == true) {
-            container.classList.add('background-change');
-        } else {
-            container.classList.remove('background-change');
-        }
+        // if(this.store.isActive == true) {
+        //     container.classList.add('background-change');
+        // } else {
+        //     container.classList.remove('background-change');
+        // }
+
+        // if(this.$route.path.includes('/projects') || this.$route.path.includes('/about')) {
+        //     container.classList.add('background-change');
+        // } else {
+        //     container.classList.remove('background-change');
+        // }
+
       }
 
     }
@@ -33,7 +40,7 @@ export default {
 
 <template>
 
-  <div id="main-container" class="background">
+  <div id="main-container" class="background" :class="this.$route.path.includes('/projects') || this.$route.path.includes('/about') ? 'background-change' : ''">
 
     <AppHeader @changeColor="bgColor()"></AppHeader>
     <router-view></router-view>

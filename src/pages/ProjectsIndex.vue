@@ -88,7 +88,7 @@ export default {
 
 <template>
 
-    <main id="projects-container" :class="store.isActive == true ? 'dark-mode' : ''">
+    <main id="projects-container" :class="this.$route.path.includes('/projects') || this.$route.path.includes('/about') ? 'dark-mode' : ''">
 
       <!-- form select for types -->
       <form action="">
