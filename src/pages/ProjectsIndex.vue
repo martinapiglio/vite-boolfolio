@@ -9,9 +9,15 @@ export default {
   data() {
     return {
       store,
+
+      //variable for type filter
       selectedType: '',
+
+      //pagination variables
       currentPage: 1,
       lastPage: '',
+
+      //variables for spinner/loading/not found 
       isLoading: true,
       projectsFound: false,
     }
@@ -28,7 +34,10 @@ export default {
   methods: {
 
     getProjects() {
-      axios.get(this.store.baseURL + this.store.APIroute + '?page=' + this.currentPage + '&type_id=' + this.selectedType).then(res => {
+      axios.get(this.store.baseURL + 
+                this.store.APIroute + 
+                '?page=' + this.currentPage + 
+                '&type_id=' + this.selectedType).then(res => {
 
         if(res.data.success) {
 
@@ -45,8 +54,10 @@ export default {
           this.store.types = res.data.types;
 
         } else {
+
           this.isLoading = false;
           this.projectsFound = false;
+
         }       
       })
 
@@ -82,7 +93,7 @@ export default {
       <!-- form select for types -->
       <form action="">
         <select class="form-select" name="type_id" id="type_id" v-model="selectedType" @change="getProjects()">
-          <option value="">Tutte</option>
+          <option value="">All</option>
           <option v-for="singleType in store.types" :value="singleType.id">{{ singleType.title }}</option>
         </select>
       </form>
@@ -99,8 +110,6 @@ export default {
 
           <!-- if projects are found -->
           <div v-if="projectsFound">
-
-            <h1>My projects</h1>
       
             <div class="py-4">
                 <button @click="prevPage()"><i class="fa-solid fa-chevron-left"></i></button>
@@ -116,7 +125,7 @@ export default {
 
           <!-- otherwise if there are no projects  -->
           <div v-else>
-              No projects found.
+              No projects found in this category.
           </div>
 
       </div>

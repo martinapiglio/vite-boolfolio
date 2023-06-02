@@ -27,16 +27,18 @@ export default {
 
     methods: {
         copyEmailToClipBoard() {
-            //get href^mailto and copy the email to clipboard
+            //get href^mailto 
             let mailToAnchor = document.getElementById('mail-to');
             let href = mailToAnchor.getAttribute('href');
             let email = href.replace('mailto:', '');
+            //copy the email to clipboard
             navigator.clipboard.writeText(email);
 
-            //append message
+            //get the message saying the element has been copied and show it
             let messageSuccess = document.getElementById('email-copied');
             messageSuccess.style.opacity = 1;
 
+            //let the message disappear after sometime
             setTimeout(function() {
                 messageSuccess.style.opacity = 0;
             }, 3000); 
@@ -110,9 +112,7 @@ footer {
                 background-color: $penn;
                 transition: opacity .3s ease-out;
             }
-
         }
-        
     }
 }
 

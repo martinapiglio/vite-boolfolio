@@ -34,15 +34,15 @@ export default {
 
     <section id="single-project-container" :class="store.isActive == true ? 'dark-mode' : ''">
         
-            <h3>{{ project.title }}</h3>
-            <h4>
-                {{ project.type ? project.type.title : 'Nessuna categoria' }}
-            </h4>
-            <div class="technologies">
-                <span v-for="technology in project.technologies" class="badge rounded-pill" :style="{backgroundColor: technology.color}">{{ technology.name }}</span>
-            </div>
-            <p> {{ project.description }} </p>
-            <hr>
+      <h3>{{ project.title }}</h3>
+      <h4>
+          {{ project.type ? project.type.title : 'No type' }}
+      </h4>
+      <div class="technologies">
+          <span v-for="technology in project.technologies" class="badge rounded-pill" :style="{backgroundColor: technology.color}">{{ technology.name }}</span>
+      </div>
+      <p> {{ project.description }} </p>
+      <hr>
 
     </section>
 

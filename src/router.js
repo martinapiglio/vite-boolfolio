@@ -1,14 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
+//import of all the components I call in thw belowe reported routes
 import Homepage from './pages/Homepage.vue';
 import AppAbout from './pages/AppAbout.vue';
 import ProjectsIndex from './pages/ProjectsIndex.vue';
 import SingleProject from './pages/SingleProject.vue';
 
 const router = createRouter({
-
+    //web history created with slashes
     history: createWebHistory(),
 
+    //routes data
     routes: [
         {
             path: '/',
@@ -43,7 +45,7 @@ const router = createRouter({
 
 });
 
-//change page titles
+//change page titles shown in browser label
 router.beforeEach((to) => {
     document.title = to.meta?.title ? 'MP Portfolio - ' + to.meta.title : 'Martina Piglionica - Portfolio'
 });

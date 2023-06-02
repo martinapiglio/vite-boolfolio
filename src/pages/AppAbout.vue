@@ -49,6 +49,7 @@
 <template>
     <section id="about-me">
 
+        <!-- about me description section -->
         <section id="about-me-left">
 
             <h1 id="title">Hello!</h1>
@@ -68,6 +69,7 @@
             
         </section>
 
+        <!-- skills section -->
         <section id="about-me-right">
 
             <h4>What I currently use:</h4>
@@ -78,6 +80,7 @@
                 </li>
             </ul>
 
+            <!-- cv download -->
             <div id="cv">
                 <a href="">Download my CV here!</a>
             </div>
@@ -154,9 +157,7 @@
             animation: fadein 2s forwards;
             animation-delay: 4.8s;
         }
-        
 
-        
     }
 
     #about-me-right {
@@ -220,6 +221,7 @@
                 }
 
             }
+
             li:hover .label {
                 visibility: visible;
                 opacity: 1;
@@ -234,12 +236,5 @@
     }
 
 }
-
-
-
-
-
-
-
 
 </style>
