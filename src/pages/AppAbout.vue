@@ -5,31 +5,39 @@
             languages: [
                 {
                     name: 'Html',
-                    icon: 'fa-html5'
+                    icon: 'fa-brands fa-html5'
                 },
                 {
                     name: 'Css',
-                    icon: 'fa-css3'
+                    icon: 'fa-brands fa-css3'
                 },
                 {
                     name: 'Scss',
-                    icon: 'fa-sass'
+                    icon: 'fa-brands fa-sass'
+                },
+                {
+                    name: 'Bootstrap',
+                    icon: 'fa-brands fa-bootstrap'
                 },
                 {
                     name: 'JavaScript',
-                    icon: 'fa-square-js'
+                    icon: 'fa-brands fa-square-js'
                 },
                 {
                     name: 'Vue / Vite',
-                    icon: 'fa-vuejs'
+                    icon: 'fa-brands fa-vuejs'
+                },
+                {
+                    name: 'SQL',
+                    icon: 'fa-solid fa-database'
                 },
                 {
                     name: 'Php',
-                    icon: 'fa-php'
+                    icon: 'fa-brands fa-php'
                 },
                 {
                     name: 'Laravel',
-                    icon: 'fa-laravel'
+                    icon: 'fa-brands fa-laravel'
                 }            
             ]
         }
@@ -62,10 +70,10 @@
 
         <section id="about-me-right">
 
-            <h4>Languages I know:</h4>
+            <h4>What I currently use:</h4>
             <ul>
                 <li v-for="language in languages">
-                    <i class="fa-brands" :class="language.icon"></i>
+                    <i :class="language.icon"></i>
                     <div class="label"> {{ language.name }} </div>
                 </li>
             </ul>

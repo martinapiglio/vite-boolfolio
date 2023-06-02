@@ -116,7 +116,4 @@ footer {
     }
 }
 
-.ciao {
-    opacity: 1;
-}
 </style>
