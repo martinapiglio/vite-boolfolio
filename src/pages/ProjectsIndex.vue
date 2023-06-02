@@ -9,6 +9,7 @@ export default {
   data() {
     return {
       store,
+      selectedType: '',
       currentPage: 1,
       lastPage: '',
       isLoading: true,
@@ -27,7 +28,7 @@ export default {
   methods: {
 
     getProjects() {
-      axios.get(this.store.baseURL + this.store.APIroute + '?page=' + this.currentPage).then(res => {
+      axios.get(this.store.baseURL + this.store.APIroute + '?page=' + this.currentPage + '&type_id=' + this.selectedType).then(res => {
 
         if(res.data.success) {
 
@@ -39,6 +40,9 @@ export default {
 
           //last page for pagination
           this.lastPage = res.data.results.last_page;
+
+          //types
+          this.store.types = res.data.types;
 
         } else {
           this.isLoading = false;
@@ -75,6 +79,14 @@ export default {
 
     <main id="projects-container" :class="store.isActive == true ? 'dark-mode' : ''">
 
+      <!-- form select for types -->
+      <form action="">
+        <select class="form-select" name="type_id" id="type_id" v-model="selectedType" @change="getProjects()">
+          <option value="">Tutte</option>
+          <option v-for="singleType in store.types" :value="singleType.id">{{ singleType.title }}</option>
+        </select>
+      </form>
+
       <!-- if variable isLoading == true then show a loading spinner -->
       <div v-if="isLoading" class="text-center py-5">
 
@@ -84,7 +96,7 @@ export default {
       </div>
       <!-- otherwise, if variable isLoading == false, show the projects section -->
       <div v-else>
-        
+
           <!-- if projects are found -->
           <div v-if="projectsFound">
 
