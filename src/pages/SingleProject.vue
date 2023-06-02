@@ -7,8 +7,12 @@ export default {
   data() {
     return {
         store,
+
         project: {},
         projectSlug: '',
+        //variables for spinner/loading/not found 
+        apiSuccess: false,
+        isLoading: true,
     }
   },
 
@@ -19,9 +23,17 @@ export default {
 
   methods: {
     getProjects() {
-      axios.get(this.store.baseURL + this.store.APIroute + '/' + this.projectSlug).then(res => {
+      axios.get(this.store.baseURL + 
+                this.store.APIroute + 
+                '/' + this.projectSlug).then(res => {
+        
+        //data is received and page is no longer loading
+        this.isLoading = false;
+        this.apiSuccess= res.data.success;
         this.project = res.data.project;
-        console.log(res.data.project);
+        
+        //change page title
+        document.title = 'MP Portfolio - ' + this.project.title;
       })
     },
   }
@@ -31,18 +43,37 @@ export default {
 </script>
 
 <template>
-
+      
     <section id="single-project-container" :class="store.isActive == true ? 'dark-mode' : ''">
-        
-      <h3>{{ project.title }}</h3>
-      <h4>
-          {{ project.type ? project.type.title : 'No type' }}
-      </h4>
-      <div class="technologies">
-          <span v-for="technology in project.technologies" class="badge rounded-pill" :style="{backgroundColor: technology.color}">{{ technology.name }}</span>
+      <!-- if variable isLoading == true then show a loading spinner -->
+      <div v-if="isLoading" class="text-center py-5">
+
+        <div class="spinner-border" role="status"></div>
+        <div class="text-light pt-3">Loading...</div>
+
       </div>
-      <p> {{ project.description }} </p>
-      <hr>
+
+      <!-- otherwise, if variable isLoading == false, show the projects section -->
+      <div v-else>
+        <!-- if selected project is found -->
+        <div v-if="apiSuccess">
+
+          <h3>{{ project.title }}</h3>
+          <h4>
+              {{ project.type ? project.type.title : 'No type' }}
+          </h4>
+          <div class="technologies">
+              <span v-for="technology in project.technologies" class="badge rounded-pill" :style="{backgroundColor: technology.color}">{{ technology.name }}</span>
+          </div>
+          <p> {{ project.description }} </p>
+        
+        </div>
+        <!-- otherwise if the project does not exist  -->
+        <div v-else>
+          No projects found in this category.
+        </div>
+
+      </div>
 
     </section>
 
