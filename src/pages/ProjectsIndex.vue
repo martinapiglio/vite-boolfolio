@@ -11,6 +11,8 @@ export default {
       store,
       currentPage: 1,
       lastPage: '',
+      isLoading: true,
+      projectsFound: false,
     }
   },
 
@@ -23,11 +25,27 @@ export default {
   },
 
   methods: {
+
     getProjects() {
       axios.get(this.store.baseURL + this.store.APIroute + '?page=' + this.currentPage).then(res => {
-        this.store.projects = res.data.results.data;
-        this.lastPage = res.data.results.last_page;
+
+        if(res.data.success) {
+
+          this.projectsFound = true;
+          this.isLoading = false;
+          
+          // projects
+          this.store.projects = res.data.results.data;
+
+          //last page for pagination
+          this.lastPage = res.data.results.last_page;
+
+        } else {
+          this.isLoading = false;
+          this.projectsFound = false;
+        }       
       })
+
     },
 
     nextPage(){
@@ -57,17 +75,39 @@ export default {
 
     <main id="projects-container" :class="store.isActive == true ? 'dark-mode' : ''">
 
-        <h1>My projects</h1>
+      <!-- if variable isLoading == true then show a loading spinner -->
+      <div v-if="isLoading" class="text-center py-5">
 
-        <div class="py-4">
-            <button @click="prevPage()"><i class="fa-solid fa-chevron-left"></i></button>
-                <span class="px-2">Page: {{ this.currentPage }} of {{ this.lastPage }}</span>
-            <button @click="nextPage()"><i class="fa-solid fa-chevron-right"></i></button>
-        </div>      
+        <div class="spinner-border" role="status"></div>
+        <div class="text-light pt-3">Loading...</div>
+
+      </div>
+      <!-- otherwise, if variable isLoading == false, show the projects section -->
+      <div v-else>
+        
+          <!-- if projects are found -->
+          <div v-if="projectsFound">
+
+            <h1>My projects</h1>
       
-        <div id="cards-container">
-          <ProjectCard v-for="project in store.projects" :project="project"></ProjectCard>
-        </div>
+            <div class="py-4">
+                <button @click="prevPage()"><i class="fa-solid fa-chevron-left"></i></button>
+                    <span class="px-2">Page: {{ this.currentPage }} of {{ this.lastPage }}</span>
+                <button @click="nextPage()"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>      
+          
+            <div id="cards-container">
+              <ProjectCard v-for="project in store.projects" :project="project"></ProjectCard>
+            </div>
+            
+          </div>
+
+          <!-- otherwise if there are no projects  -->
+          <div v-else>
+              No projects found.
+          </div>
+
+      </div>
 
     </main>
 
