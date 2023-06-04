@@ -93,25 +93,26 @@ export default {
       <!-- form select for types -->
       <form action="">
         <select class="form-select" name="type_id" id="type_id" v-model="selectedType" @change="getProjects()">
+          <option value="" disabled>Please choose a project type</option>
           <option value="">All</option>
           <option v-for="singleType in store.types" :value="singleType.id">{{ singleType.title }}</option>
         </select>
       </form>
 
       <!-- if variable isLoading == true then show a loading spinner -->
-      <div v-if="isLoading" class="text-center py-5">
+      <div v-if="isLoading" id="loading-all">
 
         <div class="spinner-border" role="status"></div>
-        <div class="text-light pt-3">Loading...</div>
+        <div class="text-light pt-3">Loading projects...</div>
 
       </div>
       <!-- otherwise, if variable isLoading == false, show the projects section -->
-      <div v-else>
+      <div v-else id="projects-section">
 
           <!-- if projects are found -->
           <div v-if="projectsFound">
       
-            <div class="py-4">
+            <div id="pagination-section">
                 <button @click="prevPage()"><i class="fa-solid fa-chevron-left"></i></button>
                     <span class="px-2">Page: {{ this.currentPage }} of {{ this.lastPage }}</span>
                 <button @click="nextPage()"><i class="fa-solid fa-chevron-right"></i></button>
@@ -124,8 +125,8 @@ export default {
           </div>
 
           <!-- otherwise if there are no projects  -->
-          <div v-else>
-              No projects found in this category.
+          <div v-else id="not-found-type">
+              No projects found of this type, please try with another one.
           </div>
 
       </div>
@@ -139,12 +140,39 @@ export default {
 @use '../components/style/_mixins.scss' as *;
 
     #projects-container {
-        padding: 7rem 5rem 5rem;
+        padding: 7rem 5rem;
         width: 100%;
-        overflow-y: auto;
 
-        h1 {
-            padding-bottom: 1.5rem;
+        select#type_id {
+          margin-bottom: 2rem;
+          background-color: black;
+          color: $maya;
+          border: 1px solid $penn;
+        }
+
+        #pagination-section {
+          text-align: center;
+          padding-bottom: 3rem;
+
+          button {
+            font-size: .8rem;
+            padding: .4rem .8rem;
+            margin: 0 .7rem;
+            color: white;
+            border: 1px solid $penn;
+            border-radius: 20px;
+            background-color: transparent;
+            transition: all .3s;
+          }
+
+          button:hover {
+            background-color: $penn;
+          }
+        }
+
+        #loading-all,
+        #not-found-type {
+          text-align: center
         }
 
         #cards-container {

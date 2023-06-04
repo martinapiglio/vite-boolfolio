@@ -42,7 +42,7 @@ export default {
 
   <div id="main-container" class="background" :class="this.$route.path.includes('/projects') || this.$route.path.includes('/about') ? 'background-change' : ''">
 
-    <AppHeader @changeColor="bgColor()"></AppHeader>
+    <AppHeader></AppHeader>
     <router-view></router-view>
     <AppFooter></AppFooter>
 
@@ -56,7 +56,9 @@ export default {
 #main-container {
     width: 100vw;
     height: 100vh;
+    overflow-y: auto;
 }
+
 .background {
     background-image: linear-gradient(black, black );
     background-size: 100% 0%;
