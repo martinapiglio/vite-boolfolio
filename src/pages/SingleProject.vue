@@ -84,7 +84,7 @@ export default {
 @use '../components/style/_mixins.scss' as *;
 
     #single-project-container {
-        padding: 7rem 5rem 5rem;
+        padding: 7rem 5rem;
         width: 100%;
         overflow-y: auto;
     }

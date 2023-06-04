@@ -5,6 +5,7 @@ import Homepage from './pages/Homepage.vue';
 import AppAbout from './pages/AppAbout.vue';
 import ProjectsIndex from './pages/ProjectsIndex.vue';
 import SingleProject from './pages/SingleProject.vue';
+import NotFound from './pages/NotFound.vue';
 
 const router = createRouter({
     //web history created with slashes
@@ -41,6 +42,14 @@ const router = createRouter({
                 title: 'Project detail'
             }
         },
+        {
+            path: '/:pathMatch(.*)*',
+            name: 'notFound',
+            component: NotFound,
+            meta: {
+              title: '404'
+            }
+          }
     ]
 
 });
