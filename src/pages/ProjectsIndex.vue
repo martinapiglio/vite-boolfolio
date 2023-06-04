@@ -90,15 +90,6 @@ export default {
 
     <main id="projects-container" :class="this.$route.path.includes('/projects') || this.$route.path.includes('/about') ? 'dark-mode' : ''">
 
-      <!-- form select for types -->
-      <form action="">
-        <select class="form-select" name="type_id" id="type_id" v-model="selectedType" @change="getProjects()">
-          <option value="" disabled>Please choose a project type</option>
-          <option value="">All</option>
-          <option v-for="singleType in store.types" :value="singleType.id">{{ singleType.title }}</option>
-        </select>
-      </form>
-
       <!-- if variable isLoading == true then show a loading spinner -->
       <div v-if="isLoading" id="loading-all">
 
@@ -108,6 +99,15 @@ export default {
       </div>
       <!-- otherwise, if variable isLoading == false, show the projects section -->
       <div v-else id="projects-section">
+
+          <!-- form select for types -->
+          <form action="">
+            <select class="form-select" name="type_id" id="type_id" v-model="selectedType" @change="getProjects()">
+              <option value="" disabled>Please choose a project type</option>
+              <option value="">All</option>
+              <option v-for="singleType in store.types" :value="singleType.id">{{ singleType.title }}</option>
+            </select>
+          </form>
 
           <!-- if projects are found -->
           <div v-if="projectsFound">
@@ -126,7 +126,7 @@ export default {
 
           <!-- otherwise if there are no projects  -->
           <div v-else id="not-found-type">
-              No projects found of this type, please try with another one.
+              No projects found of this type, please try again with another one.
           </div>
 
       </div>
@@ -139,45 +139,67 @@ export default {
 @use '../components/style/_variables.scss' as *;
 @use '../components/style/_mixins.scss' as *;
 
+@keyframes fadein {
+    0% {
+    opacity: 0;
+    transform: translateY(100%);
+    }
+    20% {
+        opacity: .5;
+    }
+    75% {
+        opacity: .8;
+        transform: translateY(0%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
     #projects-container {
         padding: 7rem 5rem;
         width: 100%;
-
-        select#type_id {
-          margin-bottom: 2rem;
-          background-color: black;
-          color: $maya;
-          border: 1px solid $penn;
-        }
-
-        #pagination-section {
-          text-align: center;
-          padding-bottom: 3rem;
-
-          button {
-            font-size: .8rem;
-            padding: .4rem .8rem;
-            margin: 0 .7rem;
-            color: white;
-            border: 1px solid $penn;
-            border-radius: 20px;
-            background-color: transparent;
-            transition: all .3s;
-          }
-
-          button:hover {
-            background-color: $penn;
-          }
-        }
 
         #loading-all,
         #not-found-type {
           text-align: center
         }
 
-        #cards-container {
-            @include flex(row, wrap, center, center, center);
-            gap: 1.5rem;
+        #projects-section {
+          animation: fadein 3s;
+
+          select#type_id {
+            margin-bottom: 2rem;
+            background-color: black;
+            color: $maya;
+            border: 1px solid $penn;
+          }
+  
+          #pagination-section {
+            text-align: center;
+            padding-bottom: 3rem;
+            color: rgb(190, 190, 190);
+  
+            button {
+              font-size: .8rem;
+              padding: .4rem .8rem;
+              margin: 0 .7rem;
+              color: rgb(190, 190, 190);
+              border: 1px solid $penn;
+              border-radius: 20px;
+              background-color: transparent;
+              transition: all .3s;
+            }
+  
+            button:hover {
+              background-color: $penn;
+            }
+          }
+  
+          #cards-container {
+              @include flex(row, wrap, space-between, center, center);
+              gap: 2rem;
+          }
         }
     }
 

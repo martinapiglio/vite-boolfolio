@@ -165,7 +165,7 @@
         padding-left: 2rem; 
         opacity: 0;
         animation: fadein 2s forwards;
-        animation-delay: 5s;
+        animation-delay: 6.5s;
 
         h4 {
             color: $maya;
